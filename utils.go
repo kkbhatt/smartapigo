@@ -161,7 +161,7 @@ func getLocalIP() (string, error) {
 }
 
 func getPublicIp() (string, error) {
-	resp, err := http.Get("https://myexternalip.com/raw")
+	resp, err := http.Get("https://icanhazip.com/")
 	if err != nil {
 		return "", err
 	}
