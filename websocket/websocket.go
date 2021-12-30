@@ -361,6 +361,16 @@ func (s *SocketClient) Subscribe() error {
 	return nil
 }
 
+func (s *SocketClient) Subscribe_Add(tokens string) error {
+	err := s.Conn.WriteMessage(websocket.TextMessage, []byte(`{"task":"mw","channel":"`+tokens+`","token":"`+s.feedToken+`","user": "`+s.clientCode+`","acctid":"`+s.clientCode+`"}`))
+	if err != nil {
+		s.triggerError(err)
+		return err
+	}
+
+	return nil
+}
+
 func (s *SocketClient) Resubscribe() error {
 	err := s.Subscribe()
 	return err
